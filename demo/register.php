@@ -14,6 +14,19 @@ require 'includes/form_handlers/register_handler.php';
 </head>
 
 <body>
+
+    <!-- start login form -->
+    <form action="register.php" method="POST">
+        <input type="email" name="log_email" placeholder="Email Address">
+        <br>
+        <input type="password" name="log_password" placeholder="Password">
+        <br>
+        <input type="submit" name="login_button" value="Login">
+        <br>
+    </form>
+    <!-- end login form -->
+
+    <!-- start Registration form -->
     <form action="register.php" method="POST">
         <input type="text" name="reg_fname" placeholder="First Name" value="<?php
         if (isset($_SESSION['reg_fname'])) {
@@ -68,5 +81,6 @@ require 'includes/form_handlers/register_handler.php';
         <?php if (in_array(REGISTRATION_OK, $error_array)) { echo REGISTRATION_OK; } ?>
 
     </form>
+    <!-- end Registration form -->
 </body>
 </html>
