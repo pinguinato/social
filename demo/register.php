@@ -213,16 +213,4 @@ $date = date("Y-m-d"); // register current date
 
     </form>
 </body>
-
 </html>
-
-
-
-<?php 
-
-
-// debug
-
-echo "<h2>Debug</h2>";
-
-var_dump($fname, $lname, $em, $em2, $password, $password2, $date, $username); 
