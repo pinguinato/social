@@ -13,6 +13,15 @@ if (mysqli_connect_errno()) {
     echo "Failed to connect " . mysqli_connect_errno();
 }
 
+// consts
+define("WRONG_FIRST_NAME", "Your First Name must be beetween 2 and 25 characters<br>");
+define("WRONG_LAST_NAME", "Your Last Name must be beetween 2 and 25 characters<br>");
+define("EMAIL_ALREADY_IN_USE", "Email already in use<br>");
+define("EMAIL_WRONG_FORMAT", "Invalid format<br>");
+define("EMAILS_NOT_MATCH", "Emails don't match<br>");
+define("PASSWORDS_NOT_MATCH", "Your passwords do not match<br>");
+define("PASSWORD_WRONG_FORMAT", "Your password can only contain english characters or numbers<br>");
+define("PASSWORD_WRONG_SIZE", "Your password must be beetween 5 and 30 characters<br>");
 
 #variabili del form di registrazione
 $fname = ""; // first name
@@ -65,36 +74,36 @@ $date = date("Y-m-d"); // register current date
             $num_rows = mysqli_num_rows($e_check);
             // verify if email is already in use
             if ($num_rows > 0) {
-                array_push($error_array, "Email already in use<br>");
+                array_push($error_array, EMAIL_ALREADY_IN_USE);
             }
         } else {
-            array_push($error_array, "Invalid format<br>");
+            array_push($error_array, EMAIL_WRONG_FORMAT);
         }
     } else {
-        array_push($error_array, "Emails don't match<br>");  
+        array_push($error_array, EMAILS_NOT_MATCH);  
     }
 
     // Validation for first name
     if(strlen($fname) > 25 || strlen($fname) < 2) {
-        array_push($error_array, "Your First Name must be beetween 2 and 25 characters<br>");
+        array_push($error_array, WRONG_FIRST_NAME);
     }
 
     // Validation for last name
     if(strlen($lname) > 25 || strlen($lname) < 2) {
-        array_push($error_array, "Your Last Name must be beetween 2 and 25 characters<br>");
+        array_push($error_array, WRONG_LAST_NAME);
     }
 
     // password validation
     if($password != $password2) {
-        array_push($error_array, "Your passwords do not match<br>");
+        array_push($error_array, PASSWORDS_NOT_MATCH);
     } else {
         if(preg_match('/[^A-Za-z0-9]/', $password)) {
-            array_push($error_array, "Your password can only contain english chcaracters or numbers<br>");
+            array_push($error_array, PASSWORD_WRONG_FORMAT);
         }
     }
 
     if(strlen($password) > 30 || strlen($password) < 5) {
-        array_push($error_array, "Your password must be beetween 5 and 30 characters<br>");
+        array_push($error_array, PASSWORD_WRONG_SIZE);
     }
 }
 ?>
@@ -114,12 +123,22 @@ $date = date("Y-m-d"); // register current date
         }
         ?>" required>
         <br>
+        
+        <?php if (in_array(WRONG_FIRST_NAME, $error_array)) {
+            echo WRONG_FIRST_NAME;
+        } ?>
+
         <input type="text" name="reg_lname" placeholder="Last Name" value="<?php 
         if (isset($_SESSION['reg_lname'])) {
             echo $_SESSION['reg_lname'];
         }
         ?>" required>
         <br>
+
+        <?php if (in_array(WRONG_LAST_NAME, $error_array)) {
+            echo WRONG_LAST_NAME;
+        } ?>
+
         <input type="email" name="reg_email" placeholder="Email" value="<?php 
         if (isset($_SESSION['reg_email'])) {
             echo $_SESSION['reg_email'];
@@ -132,10 +151,20 @@ $date = date("Y-m-d"); // register current date
         } 
         ?>" required>
         <br>
+
+        <?php if (in_array(EMAIL_ALREADY_IN_USE, $error_array)) { echo EMAIL_ALREADY_IN_USE; } ?>
+        <?php if (in_array(EMAIL_WRONG_FORMAT, $error_array)) { echo EMAIL_WRONG_FORMAT; } ?>
+        <?php if (in_array(EMAILS_NOT_MATCH, $error_array)) { echo EMAILS_NOT_MATCH; } ?>
+
         <input type="password" name="reg_password" placeholder="Password" value="<?php ?>" required>
         <br>
         <input type="password" name="reg_password2" placeholder="Confirm Password" value="<?php ?>" required>
         <br>
+
+        <?php if (in_array(PASSWORD_WRONG_FORMAT, $error_array)) { echo PASSWORD_WRONG_FORMAT; } ?>
+        <?php if (in_array(PASSWORD_WRONG_SIZE, $error_array)) { echo PASSWORD_WRONG_SIZE; } ?>
+        <?php if (in_array(PASSWORDS_NOT_MATCH, $error_array)) { echo PASSWORDS_NOT_MATCH; } ?>
+
         <input type="submit" name="register_button" value="Register">
         
     </form>
