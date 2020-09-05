@@ -22,7 +22,7 @@ $em2 = ""; // email 2
 $password = ""; // password
 $password2 = ""; // password2
 $date = ""; // sign up date
-$error_array = ""; // holds error messages
+$error_array = array(); // holds error messages
 
 if (isset($_POST['register_button'])) {
 
@@ -65,36 +65,36 @@ $date = date("Y-m-d"); // register current date
             $num_rows = mysqli_num_rows($e_check);
             // verify if email is already in use
             if ($num_rows > 0) {
-                echo "Email already in use";
+                array_push($error_array, "Email already in use<br>");
             }
         } else {
-            echo "Invalid format";
+            array_push($error_array, "Invalid format<br>");
         }
     } else {
-        echo "Emails don't match";  
+        array_push($error_array, "Emails don't match<br>");  
     }
 
     // Validation for first name
     if(strlen($fname) > 25 || strlen($fname) < 2) {
-        echo "Your First Name must be beetween 2 and 25 characters";
+        array_push($error_array, "Your First Name must be beetween 2 and 25 characters<br>");
     }
 
     // Validation for last name
     if(strlen($lname) > 25 || strlen($lname) < 2) {
-        echo "Your Last Name must be beetween 2 and 25 characters";
+        array_push($error_array, "Your Last Name must be beetween 2 and 25 characters<br>");
     }
 
     // password validation
     if($password != $password2) {
-        echo "Your passwords do not match";
+        array_push($error_array, "Your passwords do not match<br>");
     } else {
         if(preg_match('/[^A-Za-z0-9]/', $password)) {
-            echo "Your password can only contain english chcaracters or numbers";
+            array_push($error_array, "Your password can only contain english chcaracters or numbers<br>");
         }
     }
 
     if(strlen($password) > 30 || strlen($password) < 5) {
-        echo "Your password must be beetween 5 and 30 characters";
+        array_push($error_array, "Your password must be beetween 5 and 30 characters<br>");
     }
 }
 ?>
