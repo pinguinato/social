@@ -1,3 +1,5 @@
+/* font loading */
+
 @font-face {
     font-family: 'Bellota-LightItalic';
     src: url('../fonts/Bellota-LightItalic.otf') format("opentype");
@@ -7,6 +9,9 @@
     font-family: 'Bellota-BoldItalic';
     src: url('../fonts/Bellota-BoldItalic.otf') format("opentype");
 }
+
+
+/* start form registration style */
 
 html,
 body {
@@ -63,4 +68,44 @@ body {
     color: #9c949c;
     text-shadow: #FF0000 1px 1px 0px;
     font-size: 250%;
+}
+
+
+/* styling the input forms */
+
+input[type="submit"] {
+    background-color: #000FFF;
+    padding: 5px 10px 5px 10px;
+    border: 1px solid #FFFF00;
+    border-radius: 3px;
+    margin: 5px 0 5px 0;
+    color: #FFFFFF;
+    font-family: 'Bellota-BoldItalic', sans-serif;
+    font-size: 100%;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    border: 1px solid #FF0000;
+    margin-top: 5px;
+    width: 70%;
+    height: 35px;
+    padding-left: 5px;
+    margin-bottom: 10px;
+}
+
+input[type="text"]:hover,
+input[type="password"]:hover,
+input[type="email"]:hover {
+    border-color: #000FFF;
+}
+
+a {
+    text-decoration: none;
+    color: #FFFF00;
+}
+
+#second {
+    display: none;
 }

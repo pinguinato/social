@@ -12,10 +12,30 @@ require 'includes/form_handlers/login_handler.php';
 
 <head>
     <title>Welcome to Swirlfeed</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="assets/css/register_style.css">
+    <script type="text/javascript" src="assets/js/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="assets/js/register.js"></script>
+    <link rel="icon" type="ico" href="assets/images/favicon/favicon.ico"/>
 </head>
 
 <body>
+
+<?php
+
+    if(isset($_POST['register_button'])) {
+        echo '<script>
+        
+        $(document).ready(function() {
+            $("#first").hide();
+            $("#second").show();
+        });
+        
+        </script>';
+    }
+
+?>
+
 
 <div class="wrapper"> <!-- start of class wrapper -->
     
@@ -27,6 +47,7 @@ require 'includes/form_handlers/login_handler.php';
             </div>
     
     <!-- start login form -->
+    <div id="first">
         <form action="register.php" method="POST">
             <input type="email" name="log_email" placeholder="Email Address" value="<?php
             if (isset($_SESSION['log_email'])) {
@@ -40,16 +61,17 @@ require 'includes/form_handlers/login_handler.php';
             }
             ?>" required>
             <br>
+            <?php if (in_array(LOGIN_KO, $error_array)) { echo LOGIN_KO; } ?>
             <input type="submit" name="login_button" value="Login">
             <br>
-
-            <?php if (in_array(LOGIN_KO, $error_array)) { echo LOGIN_KO; } ?>
-
+            <a href="#" id="signup" class="signup">Need an acount? Register here!</a>
         </form>
+    </div> 
     <!-- end login form -->
 
     <!-- start Registration form -->
-        <form action="register.php" method="POST">
+    <div id="second">
+    <form action="register.php" method="POST">
             <input type="text" name="reg_fname" placeholder="First Name" value="<?php
             if (isset($_SESSION['reg_fname'])) {
                 echo $_SESSION['reg_fname'];
@@ -101,8 +123,9 @@ require 'includes/form_handlers/login_handler.php';
             <input type="submit" name="register_button" value="Register">
             <br>
             <?php if (in_array(REGISTRATION_OK, $error_array)) { echo REGISTRATION_OK; } ?>
-
+            <a href="#" id="signin" class="signin">Already have an acount? Sign in here!</a>
         </form>
+    </div>
     <!-- end Registration form -->
     </div>
 </div> <!-- end of class wrapper -->
