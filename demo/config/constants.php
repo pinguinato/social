@@ -10,3 +10,4 @@ define("PASSWORDS_NOT_MATCH", "Your passwords do not match<br>");
 define("PASSWORD_WRONG_FORMAT", "Your password can only contain english characters or numbers<br>");
 define("PASSWORD_WRONG_SIZE", "Your password must be beetween 5 and 30 characters<br>");
 define("REGISTRATION_OK", "<span style='color: #14C800;'>You're all set! Go ahead and login!</span><br>");
+define("LOGIN_KO", "Email or password was incorrect<br>");
