@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
 
-<head>
-    <title>Swirlfeed</title>
-</head>
+include("includes/header.php");
+session_destroy();
 
-<body>
-    Hello
+?> 
+Hello
 </body>
 
 </html>
