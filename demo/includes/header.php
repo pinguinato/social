@@ -1,12 +1,15 @@
 <?php
 
-    // check the session like this
-    if(session_id() == ''){ 
-        session_start();
-    }
-    // and then
-    if (isset($_SESSION["username"])) {
+require 'config/config.php';
+// check the session like this
+if(session_id() == ''){ 
+    session_start();
+}
+// and then
+if (isset($_SESSION["username"])) {
         $userLoggedIn = $_SESSION["username"];
+        $user_details_query = mysqli_query($conn, "SELECT * FROM users WHERE username='$userLoggedIn'");
+        $user = mysqli_fetch_array($user_details_query, MYSQLI_BOTH); // for print the current username
     } else {
         header("Location: register.php");
     }
@@ -17,6 +20,7 @@
     <title>Swirlfeed</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- css -->
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <!-- javascript -->
@@ -33,11 +37,25 @@
             </a>
         </div>
     
-
         <nav>
-            <a href="">Home</a>
-            <a href="">Messages</a>
-            <a href="">Settings</a>
+            <a href="#">
+                <?php echo $user['first_name'] . " " .  $user['last_name'] . " "; ?>
+            </a>
+            <a href="index.php">
+                <i class="fa fa-home fa-lg"></i>
+            </a>
+            <a href="#">
+                <i class="fa fa-envelope fa-lg"></i>
+            </a>
+            <a href="#">
+                <i class="fa fa-bell fa-lg"></i>
+            </a>
+            <a href="#">
+                <i class="fa fa-users fa-lg"></i>
+            </a>
+            <a href="#">
+                <i class="fa fa-cog fa-lg"></i>
+            </a>
         </nav>
 
     </div>
