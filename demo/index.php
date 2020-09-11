@@ -1,7 +1,8 @@
 <?php
 
 include("includes/header.php");
-session_destroy();
+// FIXME: rimosso perchè altrimenti mi rispedisce alla pagina di login
+//session_destroy(); 
 
 ?> 
 Hello
