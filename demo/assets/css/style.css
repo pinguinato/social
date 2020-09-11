@@ -33,3 +33,21 @@
 a:hover {
     text-decoration: none;
 }
+
+nav {
+    float: right;
+    right: 1px;
+    position: absolute;
+    margin: 10;
+}
+
+nav a {
+    position: relative;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 17px;
+}
+
+nav a:hover {
+    border-bottom: 7px solid #e67e22;
+}

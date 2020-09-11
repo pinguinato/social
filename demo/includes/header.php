@@ -32,5 +32,15 @@
                 Swirlfeed!
             </a>
         </div>
+    
+
+        <nav>
+            <a href="">Home</a>
+            <a href="">Messages</a>
+            <a href="">Settings</a>
+        </nav>
+
     </div>
+
+    
     
