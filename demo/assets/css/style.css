@@ -10,6 +10,11 @@
     src: url('../fonts/Bellota-BoldItalic.otf') format("opentype");
 }
 
+body {
+    background-color: #e6eaeb;
+    line-height: 17px;
+}
+
 .top_bar {
     width: 100%;
     height: 40px;
@@ -18,6 +23,8 @@
     min-width: 1050px;
     margin: 0 0 10px 0;
     display: inline-flex;
+    position: fixed;
+    z-index: 10;
 }
 
 .logo a {
@@ -51,4 +58,41 @@ nav a {
 nav a:hover {
     border-bottom: 7px solid #e67e22;
     color: #ffffff;
+}
+
+.wrapper {
+    margin: 0 auto;
+    top: 50px;
+    position: relative;
+    padding: 0 10px;
+    width: 75%;
+    min-width: 950px;
+}
+
+.column {
+    background-color: #ffffff;
+    padding: 10px;
+    border: 1px solid #d3d3d3;
+    border-radius: 5px;
+    box-shadow: 2px 2px 1px #d3d3d3;
+    z-index: -1;
+}
+
+.user_details {
+    /* nel tutorial era 250 io ho messo 280 perché altrimenti non ci stiamo */
+    width: 280px;
+    float: left;
+    margin-bottom: 20px;
+}
+
+.user_details_left_right {
+    width: 125px;
+    display: inline-block;
+    position: absolute;
+}
+
+.user_details img {
+    height: 125px;
+    border-radius: 5px;
+    margin-right: 5px;
 }

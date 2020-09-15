@@ -1,4 +1,5 @@
 <?php
+// TODO: dobbiamo poi cambiare ttute le query all'inteno del progetto secondo questo modello con i PDO
 // Exxample of use of a named query, more secure!!
 // creating a new PDO connection
 $username = "root";
