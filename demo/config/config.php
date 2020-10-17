@@ -7,9 +7,9 @@ session_start();
 $timezone = date_default_timezone_set("Europe/Rome");
 
 // parametri di connessione al mio db locale
-$host = "mysql57";
+$host = "127.0.0.1";
 $user = "root";
-$password = "root";
+$password = "";
 $database ="social";
 
 $conn = mysqli_connect($host, $user, $password, $database);
