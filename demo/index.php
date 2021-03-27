@@ -1,6 +1,7 @@
 <?php
 
 include("includes/header.php");
+include("includes/classes/User.php");
 //session_destroy(); 
 
 ?>
@@ -24,6 +25,17 @@ include("includes/header.php");
             <input type="submit" name="post" id="post_button" value="Post">
             <hr>
         </form>
+        <?php 
+            /*
+
+                User object utilizzo istanza...
+
+            */
+
+            $user_obj = new User($conn, $userLoggedIn);
+            echo $user_obj->getFirstAndLastName();
+        
+        ?>
     </div>
 
 </div> <!-- end of wrapper div -->
