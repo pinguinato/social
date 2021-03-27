@@ -1,3 +1,4 @@
 RewriteEngine On
+# questa regola permette di avere una pagina del profilo che porta lo user name
 RewriteRule ^([a-zA-Z0-9_-]+)$ profile.php?profile_username=$1
 RewriteRule ^([a-zA-Z0-9_-]+)/$ profile.php?profile_username=$1
