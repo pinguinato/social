@@ -11,13 +11,15 @@ class Post {
     }
 
     public function submitPost($body, $user_to) {
-        
-        
-        //var_dump($body); die();
-        
-        
+
         $body = strip_tags($body); // remove html tags
         $body = mysqli_real_escape_string($this->con, $body);
+
+        //// questo codice ci permette di inserire i tag br all'interno del testo dei nostri post /////
+        $body = str_replace('\r\n', '\n', $body);
+        $body = nl2br($body); // line break before new line in a string!!!
+        ////////////////////////////////////////////////////////////////////////////////////////////////
+        
         $check_empty = preg_replace('/\s+/', '', $body); // delete all spaces
 
         if($check_empty != "") {
@@ -28,12 +30,13 @@ class Post {
             // se lo user è lo stesso del profilo allora non postare user_to = none
             if($user_to == $added_by) {
                 $user_to = "none";
-            }
+            } 
 
-            $the_query = "INSERT INTO social.posts VALUES (NULL,'$body', '$added_by', '$user_to', '$date_added', 'no', 'no', '0')";
             // inserimento del post
-            $query = mysqli_query($this->con, $the_query); 
+            $query = mysqli_query($this->con, "INSERT INTO posts VALUES (NULL,'$body', '$added_by', '$user_to', '$date_added', 'no', 'no', '0')"); 
+            
             $returned_id = mysqli_insert_id($this->con);
+            
             // Insert notification
             
             // Update post count for user
