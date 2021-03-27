@@ -1,6 +1,14 @@
+-- Script di Creazione della base di dati per il social Network
+-- Autore: Gianotto Roberto
+
+-- creazione del database del social network
+CREATE DATABASE IF NOT EXISTS `social` /*!40100 DEFAULT CHARACTER SET utf8 */;
+
+-- aggancio del database del social network
 USE `social`;
 
-CREATE TABLE `users` (
+-- creazione della tabella degli utenti
+CREATE TABLE IF NOT EXISTS `social`.`users` (
 	`id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
 	`first_name` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
 	`last_name` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
@@ -17,3 +25,36 @@ CREATE TABLE `users` (
 )
 COLLATE='utf8_general_ci'
 ENGINE=InnoDB;
+
+-- creazione della tabella dei Post
+CREATE TABLE IF NOT EXISTS `social`.`posts` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `body` text NOT NULL,
+  `added_by` varchar(60) NOT NULL,
+  `user_to` varchar(60) NOT NULL,
+  `date_added` datetime NOT NULL,
+  `user_closed` varchar(3) NOT NULL,
+  `deleted` varchar(3) NOT NULL,
+  `likes` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- creazione della tabella post_comments
+CREATE TABLE IF NOT EXISTS `social`.`post_comments` (
+  `id` int(11) NOT NULL,
+  `post_body` text NOT NULL,
+  `posted_by` varchar(60) NOT NULL,
+  `posted_to` varchar(60) NOT NULL,
+  `date_added` datetime NOT NULL,
+  `removed` varchar(3) NOT NULL,
+  `post_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- creazione della tabella likes
+CREATE TABLE IF NOT EXISTS `social`.`likes` (
+  `id` int(10) unsigned NOT NULL,
+  `username` varchar(60) NOT NULL,
+  `post_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
