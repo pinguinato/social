@@ -24,19 +24,16 @@ class Post {
 
         if($check_empty != "") {
             // current date and time
-            $date_added = date("Y-s-d H:i:s");
+            $date_added = date("Y-m-d H:i:s");
             // get username
             $added_by = $this->user_obj->getUsername();
             // se lo user è lo stesso del profilo allora non postare user_to = none
             if($user_to == $added_by) {
                 $user_to = "none";
             } 
-
             // inserimento del post
-            $query = mysqli_query($this->con, "INSERT INTO posts VALUES (NULL,'$body', '$added_by', '$user_to', '$date_added', 'no', 'no', '0')"); 
-            
+            $query = mysqli_query($this->con, "INSERT INTO social.posts VALUES (NULL,'$body', '$added_by', '$user_to', '$date_added', 'no', 'no', '0')"); 
             $returned_id = mysqli_insert_id($this->con);
-            
             // Insert notification
             
             // Update post count for user
