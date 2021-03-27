@@ -18,4 +18,14 @@ class User {
         return $row['first_name'] . " " . $row['last_name'];
     }
 
+    public function getUsername() {
+        return $this->user['username'];
+    }
+
+    public function getNumPosts() {
+        $username = $this->user['username'];
+        $query = mysqli_query($this->con, "SELECT num_posts FROM users WHERE username = '$username'");
+        $row = mysqli_fetch_array($query);
+        return $row['num_posts'];
+    }
 }
