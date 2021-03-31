@@ -162,7 +162,8 @@ class Post {
                             $body
                             <br>
                         </div>  
-                    </div>";
+                    </div>
+                    <hr>";
 
         }
 

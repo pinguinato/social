@@ -98,14 +98,17 @@ $date = date("Y-m-d"); // register current date
         }
 
         // profile picture assignment
-        $rand = rand(1, 2);
+        $rand = rand(1, 4);
 
         if($rand == 1) {
             $profile_pic = "assets/images/profile_pics/defaults/head_deep_blue.png";
         } else if ($rand == 2) {
             $profile_pic = "assets/images/profile_pics/defaults/head_green_sea.png";
+        } else if ($rand == 3) {
+            $profile_pic = "assets/images/profile_pics/defaults/head_pete_river.png";
+        } else if ($rand == 4) {
+            $profile_pic = "assets/images/profile_pics/defaults/head_red.png";
         }
-
         // insert data into database
         $query = mysqli_query($conn, "INSERT INTO users VALUES (NULL, '$fname', '$lname', '$username', '$em', '$password', '$date', '$profile_pic', '0', '0', 'no', '')");
         array_push($error_array, REGISTRATION_OK);
