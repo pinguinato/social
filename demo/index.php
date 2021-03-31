@@ -33,14 +33,9 @@ if (isset($_POST['post'])) {
             <hr>
         </form>
         <?php 
-            /*
-
-                User object utilizzo istanza...
-
-            */
-
-            $user_obj = new User($conn, $userLoggedIn);
-            echo $user_obj->getFirstAndLastName();
+        
+            $post = new Post($conn, $userLoggedIn);
+            $post->loadPostsFriends();
         
         ?>
     </div>
