@@ -38,7 +38,59 @@ if (isset($_POST['post'])) {
             $post->loadPostsFriends();
         
         ?>
+
+        <div class="posts_area"></div>
+        <img id="#loading" src="assets/images/icons/loading.gif" alt="loading animated gif">
+
     </div>
+
+<script>
+    var userLoggedIn = '<?php echo $userLoggedIn; ?>';
+
+    $(document).ready(function() {
+       $('#loading').show();
+       // ajax request per il caricamento del primo post
+       $.ajax({
+         url: "includes/handlers/ajax_load_posts.php",
+         type: "POST",
+         data: "page=1&userLoggedIn=" + userLoggedIn,
+         cache:false,
+
+         success: function(data) {
+             $("#loading").hide();
+             $(".posts_area").html(data);
+         }
+       });
+
+       $(window).scroll(function() {
+          var height = $(".posts_area").height(); // div che contiene i posts
+          var scroll_top = $(this).scrollTop();
+          var page = $(".posts_area").find(".nextPage").val();
+          var noMorePosts = $(".posts_area").find('.noMorePosts').val();
+
+           if ((document.body.scrollHeight == document.body.scrollTop + window.innerHeight) && noMorePosts == 'false') {
+               $('#loading').show();
+
+               var ajaxReq = $.ajax({
+                   url: "includes/handlers/ajax_load_posts.php",
+                   type: "POST",
+                   data: "page=" + page + "&userLoggedIn=" + userLoggedIn,
+                   cache: false,
+
+                   success: function (response) {
+
+                       $(".posts_area").find(".nextPage").remove(); // rimuove il .nextPage corrente
+                       $(".posts_area").find(".noMorePosts").remove();
+
+                       $("#loading").hide();
+                       $(".posts_area").append(response);
+                   }
+               });
+           }
+       });
+
+    });
+</script>
 
 </div> <!-- end of wrapper div -->
 </body>
